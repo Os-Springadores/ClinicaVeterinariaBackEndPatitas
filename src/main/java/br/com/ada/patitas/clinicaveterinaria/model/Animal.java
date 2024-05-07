@@ -15,5 +15,5 @@ public class Animal {
     private String especie;
     private String raca;
     private int idade;
-
+    private int tipo;
 }
