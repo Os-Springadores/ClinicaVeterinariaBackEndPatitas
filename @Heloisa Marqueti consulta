@@ -1,31 +1,27 @@
 package br.com.ada.patitas.clinicaveterinaria.model;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import jakarta.persistence.*;
 
-public class Consulta {
+import java.util.Date;
 
-    @Retention(RetentionPolicy.RUNTIME)
-    @Target(ElementType.FIELD)
-    public @interface Atributo {
-        String nome();
-        String tipo();
-    }
+public class Consulta{
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY )
 
-    public class AtributoConsultaVeterinaria {
+    private Long id;
+@ManyToOne
+@JoinColumn (name = "veterinario_id")
+    private Veterinario veterinario;
 
-        @Atributo(nome = "Nome do Animal", tipo = "String")
-        private String nomeAnimal;
+  @ManyToOne
+  @JoinColumn (name = "animail_id")
+    private  Animal  animal;
 
-        @Atributo(nome = "Idade do Animal", tipo = "int")
-        private int idadeAnimal;
+  @Temporal(TemporalType.DATE)
+    private Date data ;
 
-        @Atributo(nome = "Diagnóstico", tipo = "String")
-        private String diagnostico;
+  @Temporal(TemporalType.TIME)
+    private  Date hora ;
 
 
-    }
 }
-
